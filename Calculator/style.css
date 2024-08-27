@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  background-color: darkgrey;
+  border: 3px solid black;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+}
+
+.screen {
+  position: relative; /* This makes the container a reference point for the result positioning */
+  height: 120px;
+  width: 355px;
+  background-color: lightblue;
+  border: 3px solid black;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 4em;
+  margin: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+  overflow: hidden;
+}
+
+.display {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 80px;
+  margin: 0px 5px 5px 5px;
+  font-size: 80px;
+  width: 345px;
+  overflow: hidden;
+}
+
+.previous {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50px;
+  margin: 5px;
+  font-size: 40px;
+  width: 345px;
+  color: grey;
+  overflow: hidden;
+}
+
+button {
+  height: 50px;
+  width: 80px;
+  background-color: lightgrey;
+  border: 3px solid black;
+  border-radius: 10px;
+  font-size: 1.5em;
+  margin: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.operation, .signal {
+  background-color: lightsalmon;
+}
+
+.del, .clear {
+  background-color: lightyellow;
+}

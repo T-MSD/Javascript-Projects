@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" />
+    <title>Etch-a-Sketch</title>
+  </head>
+    <body>
+      <div class="header">Etch-a-Sketch</div>
+      <div class="main-container">
+        <div class="other-buttons">
+          <div class="colorpicker-div" id="colorpicker-div">
+            <input type="color" id="colorpicker" value="#333333">
+            <label for="colorpicker" class="label">Select Color</label>
+          </div>
+          <button id="rainbow-button" class="btn1">Rainbow</button>
+          <button id="color-button" class="btn1">Color</button>
+          <button id="eraser-button" class="btn1">Eraser</button>
+          <button id="grid-button" class="btn1">New Grid</button>
+          <div class="size-buttons">
+            <button id="minus-button" class="btn2">-</button>
+            <button id="plus-button" class="btn2">+</button>
+          </div>
+        </div>
+        <div class="grid-size-container">
+          <div id="grid-container"></div>
+          <div class="display-size" id="display-size"></div>
+        </div>
+      </div>
+      <script src="script.js"></script>
+    </body>
+  </html>

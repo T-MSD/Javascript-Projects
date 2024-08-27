@@ -1,0 +1,116 @@
+body {
+  background-color: #25316F;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+img{
+  width: 200px;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0C1337;
+  color: #f7d51d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+}
+
+.innerHeader{
+  background-color: #25316F;
+  border-radius: 5px;
+  padding: 5px 15px 0px 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 50px;
+}
+
+.buttons img {
+  transform: scale(0.7);
+}
+
+#rock, #paper, #scissors {
+  width: 33%;
+}
+
+.nes-btn {
+  margin: 20px;
+}
+
+.nes-container.is-rounded{
+  color: white;
+  margin: 50px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0C1337;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+}
+
+.popup{
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%) scale(0.1); 
+  width: 400px;
+  height: 300px;
+  background: #0C1337;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+  color: white;
+}
+
+#popupWinner{
+  margin-top: 30px;
+}
+
+.restartBtn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.open-popup {
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close-popup {
+  visibility: hidden;
+}
+
+.blur {
+  filter: blur(5px);
+}
+
+.unblur {
+  filter: none;
+}

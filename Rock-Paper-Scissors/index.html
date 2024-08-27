@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Rock-Paper-Scissors</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="innerHeader">
+        <h2>Rock-Paper-Scissors</h2>
+      </div>
+    </div>
+    <div id="container">
+      <div class="buttons">
+        <button class="nes-btn is-warning" id="rock">Rock!
+          <img src="src/rock.png" alt="Rock">
+        </button>
+        <button class="nes-btn is-warning" id="paper">Paper!
+          <img src="src/paper.png" alt="Paper">
+        </button>
+        <button class="nes-btn is-warning" id="scissors">Scissors!
+          <img src="src/scissors.png" alt="Scissors">
+        </button>
+      </div>
+      <div class="nes-container is-rounded">
+        <div class="score">
+            <div class="playerScore">
+                <p id="pScore">Player Score: 0</p>
+            </div>
+            <div class="computerScore">
+                <p id="cScore">Computer Score: 0</p>
+            </div>
+            <div class="tieCounter">
+              <p id="tCounter">Ties: 0</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="popup">
+      <div class="restartBtn">
+          <i class="nes-icon trophy is-large"></i>
+          <p id="popupWinner"></p>
+          <button class="nes-btn is-warning" id="restartBtn">Restart Game</button>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="https://github.com/T-MSD" class="nes-icon github is-medium"></a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+  </html>

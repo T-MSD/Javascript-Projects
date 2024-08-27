@@ -1,5 +1,5 @@
-# Try them yourself
+# Try them yourself!
 
-[Calculator](https://t-msd.github.io/Javascript-Projects/Calculator/)\
+[Rock-Paper-Scissors](https://t-msd.github.io/Javascript-Projects/Rock-Paper-Scissors/)\
 [Etch-a-Sketch](https://t-msd.github.io/Javascript-Projects/Etch-a-Sketch/)\
-[Rock-Paper-Scissors](https://t-msd.github.io/Javascript-Projects/Rock-Paper-Scissors/)
+[Calculator](https://t-msd.github.io/Javascript-Projects/Calculator/)

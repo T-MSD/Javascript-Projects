@@ -16,9 +16,19 @@ class Board
     ]
   end
 
+  def colorize_symbol(symbol)
+    case symbol
+    when 'X'
+      symbol.colorize(:green)
+    when 'O'
+      symbol.colorize(:blue)
+    end
+  end
+
   def draw
     @board.each_slice(3).with_index do |row, index|
-      puts row.join(' | ')
+      colored_row = row.map { |cell| colorize_symbol(cell) }
+      puts colored_row.join(' | ')
       puts '--+---+--' unless index == @board.size / 3 - 1
     end
   end

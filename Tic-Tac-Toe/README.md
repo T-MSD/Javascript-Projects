@@ -1,6 +1,6 @@
 # Tic-Tac-Toe Command Line Game
 
-Welcome to Tic-Tac-Toe!\
+Welcome to **Tic-Tac-Toe!**\
 This classic game is played on a 3x3 grid where two players take turns placing their markers (X and O) 
 in an attempt to align three of their markers in a row—either horizontally, vertically, or diagonally. 
 The game ends when one player achieves this alignment or when all the spaces on the board are filled, 

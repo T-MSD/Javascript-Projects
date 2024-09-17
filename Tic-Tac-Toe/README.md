@@ -38,11 +38,11 @@ resulting in a tie if no player has won.
 3. Player 1 will be assigned the marker X and color green and Player 2 will be assigned the marker O and color blue.
 4. Players will take turns to place their marker on the board. To make a move, input a number between 1 and 9 corresponding to the position on the board.
 5. The game board is represented as follows:\
-   | 1 | 2 | 3 |\
-   --+---+---+--\
-   | 4 | 5 | 6 |\
-   --+---+---+--\
-   | 7 | 8 | 9 |
+   1 | 2 | 3\
+   --+---+---\
+   4 | 5 | 6\
+   --+---+---\
+   7 | 8 | 9
 6. After the game ends, the result will be displayed. The winning player’s name will be shown in their assigned color,
     or a message indicating a tie will be displayed.
 

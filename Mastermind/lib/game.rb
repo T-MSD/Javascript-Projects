@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'colorize'
 require_relative 'player'
 require_relative 'mastermind'
 
@@ -11,8 +12,8 @@ class Game
     setup_colors
     setup_peg_symbols
     @round = 0
-    random_code
     loading_animation
+    random_code
     initialize_mastermind_and_player
   end
 
@@ -41,7 +42,7 @@ class Game
   private
 
   def setup_colors
-    @colors = %i[black blue magenta white cyan light_black]
+    @colors = %i[black blue magenta white cyan light_black red yellow green]
   end
 
   def setup_peg_symbols
@@ -75,6 +76,7 @@ class Game
 
   def random_code
     @code = Array.new(4) { @colors.sample }
+    puts "code: #{@code}"
   end
 
   def next_round?

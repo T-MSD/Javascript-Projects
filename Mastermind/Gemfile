@@ -6,4 +6,4 @@ source 'https://rubygems.org'
 
 gem 'rubocop', '~> 1.66'
 
-gem 'colorizer', '~> 0.0.2'
+gem 'colorize', '~> 1.1'

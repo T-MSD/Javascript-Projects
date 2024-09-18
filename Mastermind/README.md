@@ -65,7 +65,7 @@ The objective is to guess the correct code within a limited number of rounds.
 - player.rb: Manages the player input, including validating the guesses and displaying choices.
 
 - main.rb: Entry point of the application. It starts the game by initializing and running an instance of the Game class.
-- 
+
 ## License
 
 This project is open-source and available under the [MIT License](https://github.com/T-MSD/Learning-Projects/blob/main/LICENSE).

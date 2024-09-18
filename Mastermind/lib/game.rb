@@ -16,6 +16,28 @@ class Game
     initialize_mastermind_and_player
   end
 
+  def play
+    win = false
+    quit = false
+    loop do
+      choice = @player.make_choice
+      matches = @mastermind.matches(choice)
+      @mastermind.display_feedback(matches)
+
+      if @mastermind.winner?(choice)
+        win = true
+        break
+      end
+
+      unless next_round?
+        quit = true
+        break
+      end
+    end
+    puts 'You Win! You guessed the Code!' if win
+    puts 'Good luck next time!' if quit
+  end
+
   private
 
   def setup_colors
@@ -53,5 +75,16 @@ class Game
 
   def random_code
     @code = Array.new(4) { @colors.sample }
+  end
+
+  def next_round?
+    loop do
+      puts 'Ready for another round?'
+      input = gets.chomp.downcase
+      return true if input == 'yes'
+      return false if input == 'no'
+
+      puts 'Invalid input. Please type "yes" or "no".'
+    end
   end
 end

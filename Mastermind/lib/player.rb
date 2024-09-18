@@ -7,6 +7,7 @@ class Player
   end
 
   def make_choice
+    player_colors = []
     loop do
       4.times do |i|
         puts "Please enter color number #{i + 1}:"
@@ -22,13 +23,15 @@ class Player
     end
   end
 
-  def valid_choice?(choices)
-    choices.all? { |choice| @game.colors.include?(choice) }
-  end
-
   def display_choice(choice)
     puts "Round number #{game.round}. This is the code you chose!"
     display = choice.map { |color| @game.peg_symbols[color] }
     puts display.join(' ')
+  end
+
+  private
+
+  def valid_choice?(choices)
+    choices.all? { |choice| @game.colors.include?(choice) }
   end
 end

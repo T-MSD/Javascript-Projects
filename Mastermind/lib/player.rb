@@ -13,8 +13,9 @@ class Player
         input = gets.chomp
         player_colors << input
       end
-      if valid_choice?(player_colors)
-        display_choice(player_colors)
+      symbols_array = player_colors.map(&:to_sym)
+      if valid_choice?(symbols_array)
+        display_choice(symbols_array)
         break
       end
       puts 'Your colors must be one of the following: black, blue, magenta, white, cyan, light_black.'
@@ -27,6 +28,7 @@ class Player
 
   def display_choice(choice)
     puts "Round number #{game.round}. This is the code you chose!"
-    print choice
+    display = choice.map { |color| @game.peg_symbols[color] }
+    puts display.join(' ')
   end
 end

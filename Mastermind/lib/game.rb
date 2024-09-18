@@ -36,6 +36,11 @@ class Game
     }
   end
 
+  def initialize_mastermind_and_player
+    @player = Player.new(self)
+    @mastermind = Mastermind.new(@code)
+  end
+
   def loading_animation
     puts 'Welcome to the Mastermind Game!'
     print 'Randomizing game code'

@@ -2,27 +2,36 @@
 
 # class that handles the "mastermind" logic
 class Mastermind
-  def initialize(code)
+  def initialize(code, game)
     @code = code
+    @game = game
   end
 
   def winner?(choice)
-    choice == code
+    choice == @code
   end
 
   def display_feedback(player_guess)
-    exact_matches, color_matches = matches(player_guess)
-    exact_matches.each do |match|
-      puts "#{@peg_symbols[match]} is in the right place!"
+    exact_matches, color_matches = player_guess
+    if !exact_matches.empty?
+      exact_matches.each do |match|
+        puts "#{@game.peg_symbols[match]} is in the right place!"
+      end
+    else
+      puts 'No exact macthes :('
     end
-    color_matches.each do |color|
-      puts "#{@peg_symbols[color]} is in the wrong position..."
+    if !color_matches.empty?
+      color_matches.each do |color|
+        puts "#{@game.peg_symbols[color]} is in the wrong position..."
+      end
+    else
+      puts 'No color matches :('
     end
   end
 
   def matches(player_guess)
-    exact_matches = find_exact_matches(player_guess)
-    color_matches = find_color_matches(player_guess)
+    exact_matches, remaining = find_exact_matches(player_guess)
+    color_matches = find_color_matches(remaining)
     [exact_matches, color_matches]
   end
 
@@ -41,7 +50,7 @@ class Mastermind
       remaining_guess[index] = nil # Mark the exact match in the guess
     end
 
-    exact_matches
+    [exact_matches, remaining_guess]
   end
 
   def find_color_matches(player_guess)

@@ -17,7 +17,7 @@ class Player
       symbols_array = player_colors.map(&:to_sym)
       if valid_choice?(symbols_array)
         display_choice(symbols_array)
-        break
+        return symbols_array
       end
       puts 'Your colors must be one of the following: black, blue, magenta, white, cyan,
       light_black, red, yellow, green.'
@@ -25,7 +25,7 @@ class Player
   end
 
   def display_choice(choice)
-    puts "Round number #{@game.round + 1}. Your attempt:"
+    puts "Round number #{@game.round}. Your attempt:"
     display = choice.map { |color| @game.peg_symbols[color] }
     puts display.join(' ')
   end

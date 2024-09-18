@@ -21,14 +21,16 @@ class Game
     win = false
     quit = false
     loop do
+      @round += 1
       choice = @player.make_choice
       matches = @mastermind.matches(choice)
-      @mastermind.display_feedback(matches)
 
       if @mastermind.winner?(choice)
         win = true
         break
       end
+
+      @mastermind.display_feedback(matches)
 
       unless next_round?
         quit = true
@@ -42,7 +44,7 @@ class Game
   private
 
   def setup_colors
-    @colors = %i[black blue magenta white cyan light_black red yellow green]
+    @colors = %i[black blue magenta white cyan red yellow green]
   end
 
   def setup_peg_symbols
@@ -52,7 +54,6 @@ class Game
       magenta: '●'.colorize(:magenta),
       white: '●'.colorize(:white),
       cyan: '●'.colorize(:cyan),
-      light_black: '●'.colorize(:light_black),
       red: '●'.colorize(:red),
       yellow: '●'.colorize(:yellow),
       green: '●'.colorize(:green)
@@ -61,7 +62,7 @@ class Game
 
   def initialize_mastermind_and_player
     @player = Player.new(self)
-    @mastermind = Mastermind.new(@code)
+    @mastermind = Mastermind.new(@code, self)
   end
 
   def loading_animation
@@ -69,14 +70,13 @@ class Game
     print 'Randomizing game code'
     5.times do
       print '.'
-      sleep(1) # Delay of 1 second
+      sleep(0.6) # Delay of 1 second
     end
     puts "\nGame code generated!"
   end
 
   def random_code
     @code = Array.new(4) { @colors.sample }
-    puts "code: #{@code}"
   end
 
   def next_round?

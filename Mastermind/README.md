@@ -55,7 +55,7 @@ The objective is to guess the correct code within a limited number of rounds.
 ## Technologies
 
 - **Ruby**: The game logic is written in Ruby.
-- **Colorize Gem**: Used to add color to the game messages and board.
+- **Colorize Gem**: Used to add color to the game messages.
 
 ### Code Structure:
 - game.rb: The main game logic, handling the rounds, random code generation, and overall flow of the game.

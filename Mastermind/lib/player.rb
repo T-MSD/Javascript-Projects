@@ -19,8 +19,8 @@ class Player
         display_choice(symbols_array)
         return symbols_array
       end
-      puts 'Your colors must be one of the following: black, blue, magenta, white, cyan,
-      light_black, red, yellow, green.'
+      puts 'Your colors must be one of the following: black, blue, purple, white, orange,
+      red, yellow, green.'
     end
   end
 

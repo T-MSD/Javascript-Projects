@@ -41,19 +41,19 @@ class Game
   private
 
   def setup_colors
-    @colors = %i[black blue magenta white cyan red yellow green]
+    @colors = %i[black blue purple white orange red yellow green]
   end
 
   def setup_peg_symbols
     @peg_symbols = {
-      black: '●'.colorize(:black),
-      blue: '●'.colorize(:blue),
-      magenta: '●'.colorize(:magenta),
-      white: '●'.colorize(:white),
-      cyan: '●'.colorize(:cyan),
-      red: '●'.colorize(:red),
-      yellow: '●'.colorize(:yellow),
-      green: '●'.colorize(:green)
+      black: '⚫',
+      blue: '🔵',
+      purple: '🟣',
+      white: '⚪',
+      orange: '🟠',
+      red: '🔴',
+      yellow: '🟡',
+      green: '🟢'
     }
   end
 

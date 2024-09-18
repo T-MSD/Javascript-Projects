@@ -12,6 +12,7 @@ resulting in a tie if no player has won.
 - [How to Play](#how-to-play)
 - [Features](#features)
 - [Technologies](#technologies)
+- [License](#license)
 
 ## Installation
 
@@ -67,3 +68,7 @@ resulting in a tie if no player has won.
 - player.rb: Defines the Player class, which handles player logic, including taking turns and making moves.
 
 - main.rb: Entry point of the application. It starts the game by initializing and running an instance of the Game class.
+
+## License
+
+This project is open-source and available under the [MIT License](https://github.com/T-MSD/Learning-Projects/blob/main/LICENSE).

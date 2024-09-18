@@ -59,7 +59,7 @@ The objective is to guess the correct code within a limited number of rounds.
 
 ### Code Structure:
 ```
-mastermind-game/
+Mastermind/
 │
 ├── lib/
 │   ├── game.rb          # Main game logic

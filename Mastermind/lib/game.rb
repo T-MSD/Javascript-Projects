@@ -11,7 +11,7 @@ class Game
   def initialize
     setup_colors
     setup_peg_symbols
-    @round = 11
+    @round = 0
     loading_animation
     random_code
     initialize_mastermind_and_player

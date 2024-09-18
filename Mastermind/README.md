@@ -58,6 +58,17 @@ The objective is to guess the correct code within a limited number of rounds.
 - **Colorize Gem**: Used to add color to the game messages.
 
 ### Code Structure:
+```
+mastermind-game/
+│
+├── lib/
+│   ├── game.rb          # Main game logic
+│   ├── mastermind.rb    # Mastermind class that generates and evaluates the code
+│   ├── player.rb        # Player class for player input and guess validation
+│
+├── main.rb              # Entry point to run the game
+├── README.md            # Project documentation
+```
 - game.rb: The main game logic, handling the rounds, random code generation, and overall flow of the game.
 
 - mastermind.rb: Handles the code-breaking logic, including finding exact and color matches.

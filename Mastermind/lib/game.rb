@@ -34,7 +34,7 @@ class Game
         break
       end
     end
-    puts 'You Win! You guessed the Code!' if win
+    puts 'You Win! You guessed the right Code!' if win
     puts 'Good luck next time!' if quit
   end
 

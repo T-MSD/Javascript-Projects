@@ -24,7 +24,7 @@ class Player
   end
 
   def display_choice(choice)
-    puts "Round number #{game.round}. This is the code you chose!"
+    puts "Round number #{game.round}. Your attempt:"
     display = choice.map { |color| @game.peg_symbols[color] }
     puts display.join(' ')
   end

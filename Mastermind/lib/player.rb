@@ -11,7 +11,7 @@ class Player
     loop do
       4.times do |i|
         puts "Please enter color number #{i + 1}:"
-        input = gets.chomp
+        input = gets.chomp.downcase
         player_colors << input
       end
       symbols_array = player_colors.map(&:to_sym)

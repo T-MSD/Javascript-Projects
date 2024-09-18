@@ -11,34 +11,31 @@ class Game
   def initialize
     setup_colors
     setup_peg_symbols
-    @round = 0
+    @round = 11
     loading_animation
     random_code
     initialize_mastermind_and_player
   end
 
   def play
-    win = false
-    quit = false
     loop do
       @round += 1
       choice = @player.make_choice
       matches = @mastermind.matches(choice)
-
-      if @mastermind.winner?(choice)
-        win = true
-        break
-      end
-
       @mastermind.display_feedback(matches)
 
-      unless next_round?
-        quit = true
+      if @mastermind.winner?(choice)
+        puts 'YOU WIN!'.colorize(:green)
+        puts "Congratulations! You've cracked the code in #{@rounds} rounds!"
         break
       end
+
+      next if next_round?
+
+      puts 'GAME OVER!'.colorize(:red)
+      puts "You ran out of guesses! The code was #{format_code(@code)}"
+      break
     end
-    puts 'You Win! You guessed the right Code!' if win
-    puts 'Good luck next time!' if quit
   end
 
   private
@@ -81,12 +78,11 @@ class Game
 
   def next_round?
     loop do
-      puts 'Ready for another round?'
-      input = gets.chomp.downcase
-      return true if input == 'yes'
-      return false if input == 'no'
-
-      puts 'Invalid input. Please type "yes" or "no".'
+      return false if @round == 12
     end
+  end
+
+  def format_code(code)
+    code.map { |color| @peg_symbols[color] }.join(' ')
   end
 end

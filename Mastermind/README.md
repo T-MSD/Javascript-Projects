@@ -35,7 +35,7 @@ The objective is to guess the correct code within a limited number of rounds.
 ## How to Play
 1. Run the game using the command `ruby main.rb`.
 2. You, the player, will attempt to guess the code by entering four colors.
-   (black ,blue, magenta, white, cyan, red, yellow, green)
+   ⚫ 🔵 🟣 ⚪ 🟠 🔴 🟡 🟢
 3. After each guess, you will receive feedback on:
      - Exact matches: colors that are correct and in the right position.
      - Color matches: colors that are correct but in the wrong position.

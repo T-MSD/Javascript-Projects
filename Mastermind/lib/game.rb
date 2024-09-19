@@ -9,9 +9,29 @@ class Game
   attr_reader :round, :colors, :peg_symbols
 
   def initialize
+    trap_interrupt
     @round = 0
     loading_animation
     initialize_mastermind_and_player
+  end
+
+  def trap_interrupt
+    Signal.trap('INT') do
+      puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
+      loop do
+        input = gets.chomp.downcase
+        case input
+        when 'yes'
+          puts 'Exiting the game. Goodbye!'
+          exit
+        when 'no'
+          puts 'Resuming the game.'
+          break
+        else
+          puts 'Invalid input. Please type "yes" or "no".'
+        end
+      end
+    end
   end
 
   def play

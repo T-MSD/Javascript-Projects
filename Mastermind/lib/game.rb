@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'colorize'
+require 'io/console'
 require_relative 'player'
 require_relative 'mastermind'
 
@@ -11,7 +12,6 @@ class Game
   def initialize
     trap_interrupt
     @round = 0
-    loading_animation
     initialize_mastermind_and_player
   end
 
@@ -32,6 +32,54 @@ class Game
         end
       end
     end
+  end
+
+  def rules
+    puts "\nWelcome to Mastermind!\n#{'Rules:'.colorize(:yellow)}
+    There are 8 colors you can choose from:
+
+    🟢 - Green
+    🔴 - Red
+    🟡 - Yellow
+    🔵 - Blue
+    🟣 - Purple
+    ⚫ - Black
+    ⚪ - White
+    🟠 - Orange
+
+    You have to select 4 random colors until guess the correct code.
+    You will be prompted 4 times, one for each color and your guess will follow that order. Like this:
+
+    Round number 1
+    Please enter color number 1:
+    Please enter color number 2:
+    ...
+
+    All you have to do is type the color like 'green' or 'white'.
+
+    #{'You have 12 attempts to guess the code'.colorize(:cyan)}
+
+    The game will give you feedback like this:
+
+    ⚪ is in the right place!
+    🟢 is in the wrong place...
+
+    You can quit at any time by pressing ctrl+c, then type 'yes' to quit and 'no' to continue the game.
+
+    #{'Good Luck!'.colorize(:green)}
+    "
+  end
+
+  def start
+    rules
+    loop do
+      key = $stdin.getch
+      break if key == "\r"
+
+      puts 'Please press Enter.'
+    end
+    loading_animation
+    play
   end
 
   def play
@@ -64,8 +112,7 @@ class Game
   end
 
   def loading_animation
-    puts 'Welcome to the Mastermind Game!'
-    print 'Randomizing game code'
+    print "Game starting\nRandomizing game code"
     5.times do
       print '.'
       sleep(0.6) # Delay of 0.6 second, 3 total

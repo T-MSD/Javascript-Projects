@@ -25,7 +25,7 @@ class Mastermind
     end
     if !color_matches.empty?
       color_matches.each do |color|
-        puts "#{@peg_symbols[color]} is in the wrong position..."
+        puts "#{@peg_symbols[color]} is in the wrong place..."
       end
     else
       puts 'No color matches :('

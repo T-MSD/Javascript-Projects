@@ -67,7 +67,7 @@ class Game
     print 'Randomizing game code'
     5.times do
       print '.'
-      sleep(0.6) # Delay of 1 second
+      sleep(0.6) # Delay of 0.6 second, 3 total
     end
     puts "\nGame code generated!"
   end

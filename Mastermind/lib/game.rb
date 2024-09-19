@@ -26,7 +26,7 @@ class Game
 
       if @mastermind.winner?(choice)
         puts 'YOU WIN!'.colorize(:green)
-        puts "Congratulations! You've cracked the code in #{@rounds} rounds!"
+        puts "Congratulations! You've cracked the code in #{@round} rounds!"
         break
       end
 
@@ -77,9 +77,7 @@ class Game
   end
 
   def next_round?
-    loop do
-      return false if @round == 12
-    end
+    @round < 12
   end
 
   def format_code(code)

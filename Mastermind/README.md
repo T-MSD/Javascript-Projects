@@ -70,7 +70,7 @@ Mastermind/
 ├── main.rb              # Entry point to run the game
 ├── README.md            # Project documentation
 ```
-- game.rb: The main game logic, show rules, handling the rounds, random code generation, and overall flow of the game.
+- game.rb: The main game logic, handling the rounds, random code generation, and overall flow of the game.
 
 - mastermind.rb: Handles the code-breaking logic, including finding exact and color matches.
 

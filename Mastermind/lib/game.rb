@@ -6,7 +6,7 @@ require_relative 'mastermind'
 
 # class that handles game logic
 class Game
-  attr_reader :round, :colors, :peg_symbols
+  attr_reader :round
 
   def initialize
     trap_interrupt

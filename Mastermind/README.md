@@ -34,13 +34,14 @@ The objective is to guess the correct code within a limited number of rounds.
 
 ## How to Play
 1. Run the game using the command `ruby main.rb`.
-2. You, the player, will attempt to guess the code by entering four colors.\
+2. Read the rules and then press Enter
+3. You, the player, will attempt to guess the code by entering four colors.\
    ⚫ 🔵 🟣 ⚪ 🟠 🔴 🟡 🟢
-3. After each guess, you will receive feedback on:
+4. After each guess, you will receive feedback on:
      - Exact matches: colors that are correct and in the right position.
      - Color matches: colors that are correct but in the wrong position.
-4. You have 12 rounds to guess the code correctly.
-5. The game will show a victory message if you guess the code, or a game-over message along with the correct
+5. You have 12 rounds to guess the code correctly.
+6. The game will show a victory message if you guess the code, or a game-over message along with the correct
    code if you run out of rounds.
 
 ## Features
@@ -69,7 +70,7 @@ Mastermind/
 ├── main.rb              # Entry point to run the game
 ├── README.md            # Project documentation
 ```
-- game.rb: The main game logic, handling the rounds, random code generation, and overall flow of the game.
+- game.rb: The main game logic, show rules, handling the rounds, random code generation, and overall flow of the game.
 
 - mastermind.rb: Handles the code-breaking logic, including finding exact and color matches.
 

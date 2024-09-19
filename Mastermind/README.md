@@ -34,7 +34,7 @@ The objective is to guess the correct code within a limited number of rounds.
 
 ## How to Play
 1. Run the game using the command `ruby main.rb`.
-2. Read the rules and then press Enter
+2. Read the rules and then press Enter.
 3. You, the player, will attempt to guess the code by entering four colors.\
    ⚫ 🔵 🟣 ⚪ 🟠 🔴 🟡 🟢
 4. After each guess, you will receive feedback on:

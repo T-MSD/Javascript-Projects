@@ -2,27 +2,30 @@
 
 # class that handles the "mastermind" logic
 class Mastermind
-  def initialize(code, game)
-    @code = code
-    @game = game
+  attr_reader :code, :colors, :peg_symbols
+
+  def initialize
+    setup_colors
+    setup_peg_symbols
+    @code = random_code
   end
 
-  def winner?(choice)
-    choice == @code
+  def winner?(guess)
+    guess == @code
   end
 
   def display_feedback(player_guess)
     exact_matches, color_matches = player_guess
     if !exact_matches.empty?
       exact_matches.each do |match|
-        puts "#{@game.peg_symbols[match]} is in the right place!"
+        puts "#{@peg_symbols[match]} is in the right place!"
       end
     else
       puts 'No exact macthes :('
     end
     if !color_matches.empty?
       color_matches.each do |color|
-        puts "#{@game.peg_symbols[color]} is in the wrong position..."
+        puts "#{@peg_symbols[color]} is in the wrong position..."
       end
     else
       puts 'No color matches :('
@@ -36,6 +39,27 @@ class Mastermind
   end
 
   private
+
+  def setup_colors
+    @colors = %i[black blue purple white orange red yellow green]
+  end
+
+  def setup_peg_symbols
+    @peg_symbols = {
+      black: '⚫',
+      blue: '🔵',
+      purple: '🟣',
+      white: '⚪',
+      orange: '🟠',
+      red: '🔴',
+      yellow: '🟡',
+      green: '🟢'
+    }
+  end
+
+  def random_code
+    Array.new(4) { @colors.sample }
+  end
 
   def find_exact_matches(player_guess)
     exact_matches = []

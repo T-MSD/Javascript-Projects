@@ -2,11 +2,12 @@
 
 # class that handles player logic
 class Player
-  def initialize(game)
+  def initialize(game, mastermind)
     @game = game
+    @mastermind = mastermind
   end
 
-  def make_choice
+  def make_guess
     player_colors = []
     loop do
       4.times do |i|
@@ -15,8 +16,8 @@ class Player
         player_colors << input
       end
       symbols_array = player_colors.map(&:to_sym)
-      if valid_choice?(symbols_array)
-        display_choice(symbols_array)
+      if valid_guess?(symbols_array)
+        display_guess(symbols_array)
         return symbols_array
       end
       puts 'Your colors must be one of the following: black, blue, purple, white, orange,
@@ -24,15 +25,15 @@ class Player
     end
   end
 
-  def display_choice(choice)
+  def display_guess(guess)
     puts "Round number #{@game.round}. Your attempt:"
-    display = choice.map { |color| @game.peg_symbols[color] }
+    display = guess.map { |color| @mastermind.peg_symbols[color] }
     puts display.join(' ')
   end
 
   private
 
-  def valid_choice?(choices)
-    choices.all? { |choice| @game.colors.include?(choice) }
+  def valid_guess?(guesses)
+    guesses.all? { |guess| @mastermind.colors.include?(guess) }
   end
 end

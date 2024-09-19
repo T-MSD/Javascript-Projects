@@ -9,22 +9,20 @@ class Game
   attr_reader :round, :colors, :peg_symbols
 
   def initialize
-    setup_colors
-    setup_peg_symbols
     @round = 0
     loading_animation
-    random_code
     initialize_mastermind_and_player
   end
 
   def play
     loop do
       @round += 1
-      choice = @player.make_choice
-      matches = @mastermind.matches(choice)
+      puts "\nRound number #{@round}".colorize(:cyan)
+      guess = @player.make_guess
+      matches = @mastermind.matches(guess)
       @mastermind.display_feedback(matches)
 
-      if @mastermind.winner?(choice)
+      if @mastermind.winner?(guess)
         puts 'YOU WIN!'.colorize(:green)
         puts "Congratulations! You've cracked the code in #{@round} rounds!"
         break
@@ -33,33 +31,16 @@ class Game
       next if next_round?
 
       puts 'GAME OVER!'.colorize(:red)
-      puts "You ran out of guesses! The code was #{format_code(@code)}"
+      puts "You ran out of guesses! The code was #{format_code(@mastermind.code)}"
       break
     end
   end
 
   private
 
-  def setup_colors
-    @colors = %i[black blue purple white orange red yellow green]
-  end
-
-  def setup_peg_symbols
-    @peg_symbols = {
-      black: '⚫',
-      blue: '🔵',
-      purple: '🟣',
-      white: '⚪',
-      orange: '🟠',
-      red: '🔴',
-      yellow: '🟡',
-      green: '🟢'
-    }
-  end
-
   def initialize_mastermind_and_player
-    @player = Player.new(self)
-    @mastermind = Mastermind.new(@code, self)
+    @mastermind = Mastermind.new
+    @player = Player.new(self, @mastermind)
   end
 
   def loading_animation
@@ -72,15 +53,11 @@ class Game
     puts "\nGame code generated!"
   end
 
-  def random_code
-    @code = Array.new(4) { @colors.sample }
-  end
-
   def next_round?
     @round < 12
   end
 
   def format_code(code)
-    code.map { |color| @peg_symbols[color] }.join(' ')
+    code.map { |color| @mastermind.peg_symbols[color] }.join(' ')
   end
 end

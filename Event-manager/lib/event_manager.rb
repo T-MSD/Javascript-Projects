@@ -8,6 +8,13 @@ def clean_zipcode(zipcode)
   zipcode.to_s.rjust(5, '0')[0..4]
 end
 
+def clean_number(number)
+  number = number.gsub(/\D/, '')
+  return number if number.length == 10
+
+  number[1..9] if number.length == 11 && number[0] == '1'
+end
+
 def legislators_by_zipcode(zip)
   civic_info = Google::Apis::CivicinfoV2::CivicInfoService.new
   civic_info.key = 'AIzaSyClRzDqDh5MsXwnCWi0kOiiBivP6JsSyBw'
@@ -62,13 +69,14 @@ erb_template = ERB.new template_letter
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
+  phone = clean_number(row[:homephone])
   zipcode = clean_zipcode(row[:zipcode])
   legislators = legislators_by_zipcode(zipcode)
 
   # personal_letter = template_letter.gsub('FIRST_NAME', name)
   # personal_letter.gsub!('LEGISLATORS', legislators)
 
-  # puts "#{name} #{zipcode} #{legislators}"
+  puts "#{name} #{zipcode} #{phone}"
 
   form_letter = erb_template.result(binding)
 

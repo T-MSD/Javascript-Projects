@@ -66,6 +66,9 @@ contents = CSV.open(
 template_letter = File.read('form_letter.erb')
 erb_template = ERB.new template_letter
 
+dates = Hash.new { |hash, key| hash[key] = Hash.new(0) }
+week_days = Hash.new(0)
+
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
@@ -76,9 +79,20 @@ contents.each do |row|
   # personal_letter = template_letter.gsub('FIRST_NAME', name)
   # personal_letter.gsub!('LEGISLATORS', legislators)
 
-  puts "#{name} #{zipcode} #{phone}"
-
   form_letter = erb_template.result(binding)
 
   save_thank_you_letter(id, form_letter)
+
+  date = DateTime.strptime(row[:regdate], '%m/%d/%y %H:%M')
+  day = date.day
+  hour = date.hour
+  dates[day][hour] += 1
+
+  week_day = date.strftime('%A')
+  week_days[week_day] += 1
+
+  puts "#{name} #{zipcode} #{phone} #{date}"
 end
+
+puts dates
+puts week_days

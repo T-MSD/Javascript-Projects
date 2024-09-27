@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 # The Hangman class will handle the word and guessing logic
 class Hangman
   attr_reader :current, :word
@@ -9,12 +11,19 @@ class Hangman
     @guessed_letters = []
   end
 
-  def add_letter(letter)
+  def check_letter(letter)
+    puts "There is no #{letter.colorize(:red)} in the word" unless letter?(letter)
     @guessed_letters.push(letter) if letter?(letter)
   end
 
   def display_current(guessed_letters)
-    @current = @word.chars.map { |letter| guessed_letters.include?(letter) ? letter : '_' }.join(' ')
+    @current = @word.chars.map do |letter|
+      if guessed_letters.include?(letter)
+        letter.colorize(:green)
+      else
+        '_'
+      end
+    end
   end
 
   def winner?

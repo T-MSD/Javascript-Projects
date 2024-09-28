@@ -28,7 +28,8 @@ class Game
         input = gets.chomp.downcase
         case input
         when 'yes'
-          puts 'Exiting the game. Goodbye!'
+          puts 'Saving and exiting the game. Goodbye!'
+          # add save method
           exit
         when 'no'
           puts 'Resuming the game.'
@@ -54,7 +55,7 @@ class Game
       end
       break if input == 'play'
 
-      puts 'Type either load or play.'
+      puts 'Invalid input. Please type "load" or "play"'
     end
   end
 

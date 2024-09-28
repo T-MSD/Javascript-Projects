@@ -6,6 +6,8 @@ require_relative('save')
 # Class that handles high-level gameplay (rounds, player lives, winning/losing conditions)
 class Game
   def initialize
+    word = load_dict
+    @hangman = Hangman.new(word)
     @save = Save.new
     trap_interrupt
   end
@@ -29,7 +31,6 @@ class Game
         case input
         when 'yes'
           puts 'Saving and exiting the game. Goodbye!'
-          # add save method
           exit
         when 'no'
           puts 'Resuming the game.'
@@ -43,15 +44,11 @@ class Game
 
   def choose_start_option
     loop do
-      puts "If you want to load a saved game type load.\nIf you want to start playing type play"
+      puts "To play a saved game type load.\nTo start a new game type play"
       input = gets.chomp.downcase
       if input == 'load'
-        @hangman = @save.load_game
-        if @hangman.nil?
-          word = load_dict
-          @hangman = Hangman.new(word)
-        end
-        break
+        loaded_hangman = @save.input_load_path
+        @hangman = loaded_hangman unless @hangman.nil?
       end
       break if input == 'play'
 
@@ -60,18 +57,20 @@ class Game
   end
 
   def play
+    puts @hangman.word
     loop do
       puts "You have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
-      letter_input
+      player_input
       @hangman.display_current
       break if game_over?
     end
   end
 
-  def letter_input
-    letter = gets.chomp.downcase
+  def player_input
+    input = gets.chomp.downcase
     @hangman.lives -= 1
-    @hangman.check_letter(letter)
+    @hangman.check_letter(input) if input.length == 1
+    @hangman.check_word(input) if input.length > 1
   end
 
   def game_over?

@@ -19,6 +19,18 @@ class Hangman
     @guessed_letters.push(letter) if letter?(letter)
   end
 
+  def check_word(word)
+    if word == @word
+      @current = word
+      word.each_char do |letter|
+        @guessed_letters << letter unless @guessed_letters.include?(letter)
+      end
+
+    else
+      puts 'Wrong word!'
+    end
+  end
+
   def display_current
     @current = @word.chars.map do |letter|
       if @guessed_letters.include?(letter)
@@ -48,4 +60,6 @@ class Hangman
   def same_letter?(letter)
     !@guessed_letters.include?(letter)
   end
+
+  # add method to check for whole word
 end

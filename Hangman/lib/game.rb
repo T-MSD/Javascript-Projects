@@ -16,7 +16,7 @@ class Game
   # Serialization / save
 
   def start
-    puts 'Welcome to the Hangman game!'
+    puts "Welcome to the HANGMAN GAME!\n"
     choose_start_option
     play
   end
@@ -30,7 +30,7 @@ class Game
         input = gets.chomp.downcase
         case input
         when 'yes'
-          puts 'Saving and exiting the game. Goodbye!'
+          puts 'Exiting the game. Goodbye!'
           exit
         when 'no'
           puts 'Resuming the game.'
@@ -44,11 +44,12 @@ class Game
 
   def choose_start_option
     loop do
-      puts "To play a saved game type load.\nTo start a new game type play"
+      puts "\nTo play a saved game type load.\nTo start a new game type play"
       input = gets.chomp.downcase
       if input == 'load'
         loaded_hangman = @save.input_load_path
-        @hangman = loaded_hangman unless @hangman.nil?
+        @hangman = loaded_hangman unless loaded_hangman.nil?
+        break
       end
       break if input == 'play'
 
@@ -57,9 +58,8 @@ class Game
   end
 
   def play
-    puts @hangman.word
     loop do
-      puts "You have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
+      puts "\nYou have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
       player_input
       @hangman.display_current
       break if game_over?

@@ -1,35 +1,22 @@
 # frozen_string_literal: true
 
 require_relative('hangman')
+require_relative('save')
 
 # Class that handles high-level gameplay (rounds, player lives, winning/losing conditions)
 class Game
   def initialize
-    word = load_dict
-    @hangman = Hangman.new(word)
-    @lives = 12
+    @save = Save.new
     trap_interrupt
   end
 
   # TODO:
   # Serialization / save
-  # Welcome / rules
 
   def start
-    loop do
-      puts "You have #{@lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
-      @lives -= 1
-      letter = gets.chomp.downcase
-      @hangman.check_letter(letter)
-      @hangman.display_current
-      if @hangman.winner?
-        puts 'Congatulations, you WIN!'
-        break
-      elsif loser?
-        puts "You lost... The word was: #{@hangman.word.colorize(:cyan)}.\nBetter luck next time!"
-        break
-      end
-    end
+    puts 'Welcome to the Hangman game!'
+    choose_start_option
+    play
   end
 
   private
@@ -52,14 +39,55 @@ class Game
       end
     end
   end
-  
+
+  def choose_start_option
+    loop do
+      puts "If you want to load a saved game type load.\nIf you want to start playing type play"
+      input = gets.chomp.downcase
+      if input == 'load'
+        @hangman = @save.load_game
+        if @hangman.nil?
+          word = load_dict
+          @hangman = Hangman.new(word)
+        end
+        break
+      end
+      break if input == 'play'
+
+      puts 'Type either load or play.'
+    end
+  end
+
+  def play
+    loop do
+      puts "You have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
+      letter_input
+      @hangman.display_current
+      break if game_over?
+    end
+  end
+
+  def letter_input
+    letter = gets.chomp.downcase
+    @hangman.lives -= 1
+    @hangman.check_letter(letter)
+  end
+
+  def game_over?
+    if @hangman.winner?
+      puts 'Congratulations, you WIN!'
+      true
+    elsif @hangman.loser?
+      puts "You lost... The word was: #{@hangman.word.colorize(:cyan)}.\nBetter luck next time!"
+      true
+    else
+      false
+    end
+  end
+
   def load_dict
     words = File.readlines('words.txt').map(&:chomp) # &:chomp removes \n
     valid_words = words.select { |word| word.length.between?(5, 12) }
     valid_words.sample # Select random word
-  end
-
-  def loser?
-    @lives.zero?
   end
 end

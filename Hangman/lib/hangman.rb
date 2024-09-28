@@ -5,9 +5,11 @@ require 'colorize'
 # The Hangman class will handle the word and guessing logic
 class Hangman
   attr_reader :current, :word
+  attr_accessor :lives
 
   def initialize(word)
     @word = word
+    @lives = 12
     @guessed_letters = []
   end
 
@@ -31,6 +33,10 @@ class Hangman
 
   def winner?
     !@current.include?('_')
+  end
+
+  def loser?
+    @lives.zero?
   end
 
   private

@@ -12,6 +12,20 @@ class Game
 
   def start
     puts @hangman.word
+    loop do
+      puts "You have #{@lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
+      @lives -= 1
+      letter = gets.chomp.downcase
+      @hangman.check_letter(letter)
+      @hangman.display_current
+      if @hangman.winner?
+        puts 'Congatulations, you WIN!'
+        break
+      elsif loser?
+        puts "You lost... The word was: #{@hangman.word.colorize(:cyan)}.\nBetter luck next time!"
+        break
+      end
+    end
   end
 
   private

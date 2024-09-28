@@ -8,10 +8,33 @@ class Game
     word = load_dict
     @hangman = Hangman.new(word)
     @lives = 12
+    trap_interrupt
   end
 
+  def trap_interrupt
+    Signal.trap('INT') do
+      puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
+      loop do
+        input = gets.chomp.downcase
+        case input
+        when 'yes'
+          puts 'Exiting the game. Goodbye!'
+          exit
+        when 'no'
+          puts 'Resuming the game.'
+          break
+        else
+          puts 'Invalid input. Please type "yes" or "no".'
+        end
+      end
+    end
+  end
+
+  # TODO:
+  # Serialization / save
+  # Welcome / rules
+
   def start
-    puts @hangman.word
     loop do
       puts "You have #{@lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
       @lives -= 1

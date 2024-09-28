@@ -11,25 +11,6 @@ class Game
     trap_interrupt
   end
 
-  def trap_interrupt
-    Signal.trap('INT') do
-      puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
-      loop do
-        input = gets.chomp.downcase
-        case input
-        when 'yes'
-          puts 'Exiting the game. Goodbye!'
-          exit
-        when 'no'
-          puts 'Resuming the game.'
-          break
-        else
-          puts 'Invalid input. Please type "yes" or "no".'
-        end
-      end
-    end
-  end
-
   # TODO:
   # Serialization / save
   # Welcome / rules
@@ -53,6 +34,25 @@ class Game
 
   private
 
+  def trap_interrupt
+    Signal.trap('INT') do
+      puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
+      loop do
+        input = gets.chomp.downcase
+        case input
+        when 'yes'
+          puts 'Exiting the game. Goodbye!'
+          exit
+        when 'no'
+          puts 'Resuming the game.'
+          break
+        else
+          puts 'Invalid input. Please type "yes" or "no".'
+        end
+      end
+    end
+  end
+  
   def load_dict
     words = File.readlines('words.txt').map(&:chomp) # &:chomp removes \n
     valid_words = words.select { |word| word.length.between?(5, 12) }

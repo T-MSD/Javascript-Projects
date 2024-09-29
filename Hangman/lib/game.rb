@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative('hangman')
-require_relative('save')
+require_relative 'hangman'
+require_relative 'save'
 
 # Class that handles high-level gameplay (rounds, player lives, winning/losing conditions)
 class Game
@@ -14,6 +14,7 @@ class Game
 
   # TODO:
   # Serialization / save
+  # validate guess input (numbers/special chars)
 
   def start
     puts "Welcome to the HANGMAN GAME!\n"
@@ -57,8 +58,26 @@ class Game
     end
   end
 
+  def save?
+    loop do
+      puts 'Do you want to save the game and exit? (yes/no)'
+      input = gets.chomp.downcase
+      if input == 'yes'
+        @save.input_save_path(@hangman)
+        puts 'Saving and exiting...'
+        return true
+      elsif input == 'no'
+        return false
+      else
+        puts 'Type either yes or no.'
+      end
+    end
+  end
+
   def play
     loop do
+      break if save?
+
       puts "\nYou have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
       player_input
       @hangman.display_current

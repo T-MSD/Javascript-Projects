@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'yaml'
+require_relative 'hangman'
+
 # The save class handles game state serialization
 class Save
   def input_load_path
@@ -13,7 +16,7 @@ class Save
   end
 
   # missing method call in game
-  def input_save_path(game)
+  def input_save_path(hangman)
     puts 'Path to the file:'
     path = gets.chomp
     # Get the directory part of the path
@@ -23,22 +26,18 @@ class Save
       FileUtils.mkdir_p(dir) # This creates nested directories if needed
       puts "Directory #{dir} was created."
     end
-    save_game(game, path)
+    save_game(hangman, path)
   end
 
   def load_game(path)
     # return hangman instance
+    puts "path: #{path}"
+    object = File.read(path)
+    YAML.safe_load(object, permitted_classes: [Hangman])
   end
 
-  def save_game(game, path)
+  def save_game(hangman, path)
     # save game to file
-  end
-
-  def serialize(object)
-    # serialize hangman instance
-  end
-
-  def deserialize(object)
-    # deserialize hangman instance
+    File.write(path, hangman.to_yaml)
   end
 end

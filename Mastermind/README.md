@@ -23,11 +23,14 @@ The objective is to guess the correct code within a limited number of rounds.
 ### Setup Instructions
 
 1. Clone the repository:
-2. Install Dependencies:
-   ```bash
-   gem install colorize
-   ```
-3. Run the game:
+   ```sh
+    git clone <repository-url>
+    ```
+3. Install the required gems:
+    ```sh
+    bundle install
+    ```
+4. Run the game:
    ```bash
    ruby main.rb
    ```

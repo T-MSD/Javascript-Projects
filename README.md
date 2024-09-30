@@ -4,4 +4,5 @@
 [Etch-a-Sketch](https://t-msd.github.io/Learning-Projects/Etch-a-Sketch/)\
 [Calculator](https://t-msd.github.io/Learning-Projects/Calculator/)\
 [Tic-Tac-Toe](https://github.com/T-MSD/Learning-Projects/blob/main/Tic-Tac-Toe/README.md)\
-[Mastermind](https://github.com/T-MSD/Learning-Projects/blob/main/Mastermind/README.md)
+[Mastermind](https://github.com/T-MSD/Learning-Projects/blob/main/Mastermind/README.md)\
+[Hangman](https://github.com/T-MSD/Learning-Projects/blob/main/Hangman/README.md)

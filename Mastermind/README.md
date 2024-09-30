@@ -25,6 +25,7 @@ The objective is to guess the correct code within a limited number of rounds.
 1. Clone the repository:
    ```sh
     git clone <repository-url>
+   cd Mastermind
     ```
 3. Install the required gems:
     ```sh

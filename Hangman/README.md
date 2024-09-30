@@ -49,7 +49,7 @@ The objective is to reveal the entire word before running out of lives. Guess wi
 
 1. Randomly chooses a word between 5-12 characters long from the [words.txt](https://github.com/T-MSD/Learning-Projects/blob/main/Hangman/words.txt) file.
 2. Provides visual feedback after every guess.
-3. Saving and loading your game.
+3. Saving and loading your game. Only **YAML** files.
 
 ## Technologies
 

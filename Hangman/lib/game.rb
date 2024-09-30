@@ -19,7 +19,7 @@ class Game
   end
 
   def start
-    puts "Welcome to the #{'HANGMAN GAME!'.colorize(:magenta)}\n"
+    rules
     choose_start_option
     play
   end
@@ -113,5 +113,24 @@ class Game
 
       puts error_message
     end
+  end
+
+  def rules
+    puts "Welcome to the #{'HANGMAN GAME!'.colorize(:magenta)}\n#{'Rules:'.colorize(:yellow)}\n
+    Your objective is to guess the word.
+
+    #{'You have 12 attempts to guess the word.'.colorize(:cyan)}
+    If you reach 0 you lose.
+    You can guess with a single letter or the whole word.
+    You will be prompted for your guess every round and receive a feedback.
+
+    To save the game all you have to do is type 'save!' when prompted for the next guess.
+    (#{"don't forget the exclamation point".colorize(:yellow)})
+
+    After that you just need to input the path to the file where you want the game to be saved.
+
+    You can quit at any time by pressing ctrl+c, then type 'yes' to quit and 'no' to continue the game.
+
+    #{'Good Luck!'.colorize(:green)}"
   end
 end

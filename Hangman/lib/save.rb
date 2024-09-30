@@ -13,7 +13,7 @@ class Save
       puts "\nThe file does not exist. \nStarting game..."
       return nil
     end
-    load_game(path) if File.exist?(path)
+    load_game(path)
   end
 
   def input_save_path(hangman)
@@ -34,10 +34,14 @@ class Save
     puts "path: #{path}"
     object = File.read(path)
     YAML.safe_load(object, permitted_classes: [Hangman])
+  rescue Psych::SyntaxError => e
+    puts "Failed to load the game: Invalid file format.\nError: #{e.message}"
+    nil
   end
 
   def save_game(hangman, path)
     # save game to file
     File.write(path, hangman.to_yaml)
+    puts "Game saved successfully at #{path.colorize(:cyan)}"
   end
 end

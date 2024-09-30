@@ -22,6 +22,7 @@ The objective is to reveal the entire word before running out of lives. Guess wi
 1. Clone the repository:
     ```sh
     git clone <repository-url>
+    cd Hangman
     ```
 2. Install the required gems:
     ```sh

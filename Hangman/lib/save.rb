@@ -17,7 +17,7 @@ class Save
   end
 
   def input_save_path(hangman)
-    puts 'Path to the file:'
+    puts "\nPath to the file:"
     path = gets.chomp
     # Get the directory part of the path
     dir = File.dirname(path)

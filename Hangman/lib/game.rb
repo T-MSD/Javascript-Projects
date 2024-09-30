@@ -5,11 +5,17 @@ require_relative 'save'
 
 # Class that handles high-level gameplay (rounds, player lives, winning/losing conditions)
 class Game
+  YES = 'yes'
+  NO = 'no'
+  LOAD = 'load'
+  PLAY = 'play'
+  SAVE_COMMAND = 'save!'
+
   def initialize
-    word = load_dict
-    @hangman = Hangman.new(word)
+    @hangman = Hangman.new(load_dict)
     @save = Save.new
     trap_interrupt
+    @saved = false
   end
 
   def start
@@ -21,74 +27,50 @@ class Game
   private
 
   def trap_interrupt
-    Signal.trap('INT') do
-      puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
-      loop do
-        input = gets.chomp.downcase
-        case input
-        when 'yes'
-          puts 'Exiting the game. Goodbye!'
-          exit
-        when 'no'
-          puts 'Resuming the game.'
-          break
-        else
-          puts 'Invalid input. Please type "yes" or "no".'
-        end
-      end
+    Signal.trap('INT') { handle_interrupt }
+  end
+
+  def handle_interrupt
+    puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
+    input = prompt_until_valid(YES, NO, 'Invalid input. Please type "yes" or "no".')
+
+    if input == YES
+      puts 'Exiting the game. Goodbye!'
+      exit
+    else
+      puts 'Resuming the game.'
     end
   end
 
   def choose_start_option
-    loop do
-      puts "\nTo play a saved game type load.\nTo start a new game type play"
-      input = gets.chomp.downcase
-      if input == 'load'
-        loaded_hangman = @save.input_load_path
-        @hangman = loaded_hangman unless loaded_hangman.nil?
-        break
-      end
-      break if input == 'play'
+    puts "\nTo play a saved game type load.\nTo start a new game type play"
+    input = prompt_until_valid(PLAY, LOAD, 'Invalid input. Please type "yes" or "no".')
+    return unless input == 'load'
 
-      puts 'Invalid input. Please type "load" or "play"'
-    end
-  end
-
-  def save?
-    loop do
-      puts "\nDo you want to save the game and exit? (yes/no)"
-      input = gets.chomp.downcase
-      if input == 'yes'
-        @save.input_save_path(@hangman)
-        puts 'Saving and exiting...'
-        return true
-      elsif input == 'no'
-        return false
-      else
-        puts 'Type either yes or no.'
-      end
-    end
+    loaded_hangman = @save.input_load_path
+    @hangman = loaded_hangman unless loaded_hangman.nil?
   end
 
   def play
     loop do
-      break if save?
-
       puts "\nYou have #{@hangman.lives.to_s.colorize(:yellow)} remaining lives. Type your next letter."
       player_input
+      break if @saved
+
       @hangman.display_current
       break if game_over?
     end
   end
 
   def player_input
+    input = prompt_user
+    return if @saved
+
     loop do
-      input = gets.chomp.downcase
       unless @hangman.valid_input?(input)
         puts "Invalid input, only alphabetic characters!\n"
         next
       end
-
       @hangman.lives -= 1
       @hangman.check_letter(input) if input.length == 1
       @hangman.check_word(input) if input.length > 1
@@ -112,5 +94,24 @@ class Game
     words = File.readlines('words.txt').map(&:chomp) # &:chomp removes \n
     valid_words = words.select { |word| word.length.between?(5, 12) }
     valid_words.sample # Select random word
+  end
+
+  def prompt_user
+    input = gets.chomp.downcase
+    if input == SAVE_COMMAND
+      @save.input_save_path(@hangman)
+      @saved = true
+      puts "\nSaving and exiting..."
+    end
+    input
+  end
+
+  def prompt_until_valid(*valid_inputs, error_message)
+    loop do
+      input = gets.chomp.downcase
+      return input if valid_inputs.include?(input)
+
+      puts error_message
+    end
   end
 end

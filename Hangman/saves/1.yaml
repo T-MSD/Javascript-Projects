@@ -1,6 +1,6 @@
 --- !ruby/object:Hangman
-word: savannah
+word: adobe
 lives: 11
 guessed_letters:
 - a
-current: "_ \e[0;32;49ma\e[0m _ \e[0;32;49ma\e[0m _ _ \e[0;32;49ma\e[0m _ "
+current: "\e[0;32;49ma\e[0m _ _ _ _ "

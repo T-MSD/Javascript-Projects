@@ -19,7 +19,7 @@ class Game
   end
 
   def start
-    puts "Welcome to the HANGMAN GAME!\n"
+    puts "Welcome to the #{'HANGMAN GAME!'.colorize(:magenta)}\n"
     choose_start_option
     play
   end
@@ -31,7 +31,7 @@ class Game
   end
 
   def handle_interrupt
-    puts "\nGame interrupted! Are you sure you want to quit? (yes/no)"
+    puts "\n#{'Game interrupted!'.colorize(:yellow)} Are you sure you want to quit? (yes/no)"
     input = prompt_until_valid(YES, NO, 'Invalid input. Please type "yes" or "no".')
 
     if input == YES

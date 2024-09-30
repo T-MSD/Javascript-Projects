@@ -1,0 +1,6 @@
+--- !ruby/object:Hangman
+word: activists
+lives: 10
+guessed_letters:
+- a
+current: "\e[0;32;49ma\e[0m _ _ _ _ _ _ _ _ "

@@ -18,9 +18,9 @@ class Hangman
   end
 
   def check_letter(letter)
-    puts "There is no #{letter.colorize(:red)} in the word" unless letter?(letter)
-    puts "There are no more #{letter.colorize(:red)} in the word" unless same_letter?(letter)
-    @guessed_letters.push(letter) if letter?(letter)
+    puts "There is no #{letter.colorize(:red)} in the word" unless letter_in_word?(letter)
+    puts "There are no more #{letter.colorize(:red)} in the word" unless already_guessed_letter?(letter)
+    @guessed_letters.push(letter) if letter_in_word?(letter)
   end
 
   def check_word(word)
@@ -57,11 +57,11 @@ class Hangman
 
   private
 
-  def letter?(letter)
+  def letter_in_word?(letter)
     @word.include?(letter)
   end
 
-  def same_letter?(letter)
+  def already_guessed_letter?(letter)
     !@guessed_letters.include?(letter)
   end
 end

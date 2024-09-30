@@ -64,6 +64,4 @@ class Hangman
   def same_letter?(letter)
     !@guessed_letters.include?(letter)
   end
-
-  # add method to check for whole word
 end

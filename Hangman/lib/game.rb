@@ -12,9 +12,6 @@ class Game
     trap_interrupt
   end
 
-  # TODO:
-  # validate guess input (numbers/special chars)
-
   def start
     puts "Welcome to the HANGMAN GAME!\n"
     choose_start_option

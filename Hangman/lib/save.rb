@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
+require 'fileutils'
 require_relative 'hangman'
 
 # The save class handles game state serialization
@@ -15,7 +16,6 @@ class Save
     load_game(path) if File.exist?(path)
   end
 
-  # missing method call in game
   def input_save_path(hangman)
     puts 'Path to the file:'
     path = gets.chomp

@@ -65,8 +65,12 @@ Hangman/
 │   ├── hangman.rb       # Hangman class handles the word and guessing logic
 │   ├── save.rb          # Save class handles game state serialization
 │
+├── saves/
+│   ├── 1.yaml           # Example saved game
+│
 ├── main.rb              # Entry point to run the game
 ├── README.md            # Project documentation
+├── word.txt             # Text file with 10000 words
 ```
 - game.rb: The main game logic, handling the rounds, random word generation, and overall flow of the game.
 

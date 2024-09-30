@@ -13,7 +13,6 @@ class Game
   end
 
   # TODO:
-  # Serialization / save
   # validate guess input (numbers/special chars)
 
   def start
@@ -60,7 +59,7 @@ class Game
 
   def save?
     loop do
-      puts 'Do you want to save the game and exit? (yes/no)'
+      puts "\nDo you want to save the game and exit? (yes/no)"
       input = gets.chomp.downcase
       if input == 'yes'
         @save.input_save_path(@hangman)
@@ -86,10 +85,18 @@ class Game
   end
 
   def player_input
-    input = gets.chomp.downcase
-    @hangman.lives -= 1
-    @hangman.check_letter(input) if input.length == 1
-    @hangman.check_word(input) if input.length > 1
+    loop do
+      input = gets.chomp.downcase
+      unless @hangman.valid_input?(input)
+        puts "Invalid input, only alphabetic characters!\n"
+        next
+      end
+
+      @hangman.lives -= 1
+      @hangman.check_letter(input) if input.length == 1
+      @hangman.check_word(input) if input.length > 1
+      break
+    end
   end
 
   def game_over?

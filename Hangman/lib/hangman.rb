@@ -13,6 +13,10 @@ class Hangman
     @guessed_letters = []
   end
 
+  def valid_input?(input)
+    !!(input =~ /\A[a-zA-Z]+\z/)
+  end
+
   def check_letter(letter)
     puts "There is no #{letter.colorize(:red)} in the word" unless letter?(letter)
     puts "There are no more #{letter.colorize(:red)} in the word" unless same_letter?(letter)

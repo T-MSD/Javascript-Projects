@@ -1,4 +1,8 @@
-# Try them yourself!
+# Ruby + JS Projects
+I'm currently taking the [**TOP**](https://www.theodinproject.com/) course. 
+This repository will contain the projects that I will be working on along the course.
+
+## Try them yourself!
 
 [Rock-Paper-Scissors](https://t-msd.github.io/Learning-Projects/Rock-Paper-Scissors/)\
 [Etch-a-Sketch](https://t-msd.github.io/Learning-Projects/Etch-a-Sketch/)\

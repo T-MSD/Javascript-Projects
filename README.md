@@ -1,5 +1,5 @@
 # Ruby + JS Projects
-I'm currently taking the [**TOP**](https://www.theodinproject.com/) course. 
+I'm currently taking the [**TOP**](https://www.theodinproject.com/) course.\ 
 This repository will contain the projects that I will be working on along the course.
 
 ## Try them yourself!
